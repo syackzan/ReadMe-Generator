@@ -12,13 +12,13 @@ const questions = [
     "Enter Contribution Guidelines:",
     "Enter Test Instructions:",
     "What License will you use:",
-    "Enter your Github Account",
+    "Enter your Github Account:",
     "Enter Your Email for contact purposes:"
 ];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, JSON.stringify(data, null, "\t"), (err) =>
+    fs.appendFile(fileName, JSON.stringify(data, null, "\t"), (err) =>
     err ? console.error(err) : console.log('Success!')
 );
 }
@@ -76,6 +76,7 @@ function init() {
   ])
   .then((response) => {
     writeToFile("test.md", response);
+    //writeToFile("test.md", "Hello");
   });
 }
 
