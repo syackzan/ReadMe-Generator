@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
+const generateMarkdown = require("generateMarkdown")
 //const generateMarkdown = require("generateMarkdown");
 
 // TODO: Create an array of questions for user input
@@ -13,12 +14,64 @@ const questions = [
     "Enter Test Instructions:",
     "What License will you use:",
     "Enter your Github Account:",
-    "Enter Your Email for contact purposes:"
+    "Enter Your Email for contact purposes:",
+    "Enter Contributors"
 ];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fs.appendFile(fileName, JSON.stringify(data, null, "\t"), (err) =>
+    let licenseBadge = generateMarkdown.renderLicenseBadge(data.license);
+    let licenseLink = generateMarkdown.renderLicenseLink(data.license);
+    let licenseText = generateMarkdown.renderLicenseSection(data.license);
+
+    
+    let readMe = `# ${data.title}                 ${licenseBadge}
+
+    ## Description
+    
+    ${data.description}
+    
+    ## Table of Contents
+    
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Credits](#credits)
+    - [License](#license)
+    - [Tests](#Tests)
+    
+    ## Usage
+    
+    Instructions and Examples For Use:
+
+    ${data.usage}
+    
+    ## Image Website
+    
+    <img src="#" alt="Image">
+    
+    ## Credits
+    
+    List of Collaborators:
+
+    ${data.contributors}
+    
+    Third Party APIs:
+    
+    ## License
+    
+    ${data.license} Link: ${licenseLink}
+
+    ${licenseText}
+    
+    ## Tests
+    
+    ${data.tests}
+    
+    ## Contact
+    
+    You can contact me at this [Email](${data.email}), or find out more information regarding any projects at my [GitHub](${data.github}) page`
+    
+    fs.appendFile(fileName, readMe, (err) =>
     err ? console.error(err) : console.log('Success!')
 );
 }
@@ -30,48 +83,53 @@ function init() {
     {
       type: 'input',
       message: questions[0],
-      name: 'Title',
+      name: 'title',
     },
     {
     type: 'input',
     message: questions[1],
-    name: 'Description',
+    name: 'description',
     },
     {
     type: 'input',
     message: questions[2],
-    name: 'Installlation',
+    name: 'installlation',
     },
     {
     type: 'input',
     message: questions[3],
-    name: 'Usage Info',
+    name: 'usageInfo',
     },
     {
     type: 'input',
     message: questions[4],
-    name: 'Constribution Guidelines',
+    name: 'constributionGuidelines',
     },
     {
     type: 'input',
     message: questions[5],
-    name: 'Test Instru',
+    name: 'testInstru',
     },
     {
     type: 'list',
     choices: ["MIT", "WXYZ", "ZTBS"],
     message: questions[6],
-    name: 'License'
+    name: 'license'
     },
     {
     type: 'input',
     message: questions[7],
-    name: 'Github:',
+    name: 'github:',
     },
     {
     type: 'input',
     message: questions[8],
-    name: 'Email:',
+    name: 'email',
+    },
+    {
+    type: 'input',
+    message: questions[9],
+    name: 'contributors',
     },
   ])
   .then((response) => {
