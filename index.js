@@ -45,17 +45,11 @@ function writeToFile(fileName, data) {
 
     ${data.usage}
     
-    ## Image Website
-    
-    <img src="#" alt="Image">
-    
-    ## Credits
+    ## Contributing
     
     List of Collaborators:
 
     ${data.contributors}
-    
-    Third Party APIs:
     
     ## License
     
@@ -67,11 +61,11 @@ function writeToFile(fileName, data) {
     
     ${data.tests}
     
-    ## Contact
+    ## Questions
     
-    You can contact me at this [Email](${data.email}), or find out more information regarding any projects at my [GitHub](${data.github}) page`
+    If you have any questions you can contact me at this [Email](${data.email}), or find out more information regarding any projects at my [GitHub](${data.github}) page`
     
-    fs.appendFile(fileName, readMe, (err) =>
+    fs.writeFile(fileName, readMe, (err) =>
     err ? console.error(err) : console.log('Success!')
 );
 }
@@ -112,7 +106,7 @@ function init() {
     },
     {
     type: 'list',
-    choices: ["MIT", "WXYZ", "ZTBS"],
+    choices: ["MIT", "Apache", "IBM", "Other", "GPLv3"],
     message: questions[6],
     name: 'license'
     },
@@ -133,8 +127,8 @@ function init() {
     },
   ])
   .then((response) => {
-    writeToFile("test.md", response);
-    //writeToFile("test.md", "Hello");
+    let filename = `${response.title}` + ".md"
+    writeToFile(filename, response);
   });
 }
 
