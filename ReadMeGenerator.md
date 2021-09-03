@@ -1,4 +1,4 @@
-# ReadMe Generator [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)                
+# ReadMeGenerator [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)                
 
 ## Description
     
@@ -10,13 +10,13 @@ This application was built to automatically generate a ReadMe File after Command
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
-- [Tests](#Tests)
+- [Tests](#tests)
 
 ## Usage
 
 Instructions and Examples For Use:
 
-undefined
+Call index.js with "node index" in the command terminal.
 
 ## Contributing
 
@@ -28,7 +28,7 @@ Scotty Yackzan
 
 Apache Link: https://opensource.org/licenses/Apache-2.0
 
- Copyright [2021] [Name]
+ Copyright [2021] [Scotty Yackzan]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -44,8 +44,8 @@ Apache Link: https://opensource.org/licenses/Apache-2.0
 
 ## Tests
 
-undefined
+N/A
 
 ## Questions
 
-If you have any questions you can contact me at this [Email](syackzan@gmail.com), or find out more information regarding any projects at my [GitHub](undefined) page
+If you have any questions you can contact me at syackzan@gmail.com, or find out more information regarding any projects at my [GitHub](https://github.com/syackzan) page

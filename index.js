@@ -2,7 +2,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const generateMarkdown = require("./utils/generateMarkdown")
-console.log(generateMarkdown);
+
 //const generateMarkdown = require("generateMarkdown");
 
 // TODO: Create an array of questions for user input
@@ -38,13 +38,13 @@ ${data.description}
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
-- [Tests](#Tests)
+- [Tests](#tests)
 
 ## Usage
 
 Instructions and Examples For Use:
 
-${data.usage}
+${data.usageInfo}
 
 ## Contributing
 
@@ -60,12 +60,12 @@ ${licenseText}
 
 ## Tests
 
-${data.tests}
+${data.testInstru}
 
 ## Questions
 
 If you have any questions you can contact me at ${data.email}, or find out more information regarding any projects at my [GitHub](${data.github}) page`
-    console.log(data);   
+      
     fs.writeFile(fileName, readMe, (err) =>
     err ? console.error(err) : console.log('Success!')
 );
