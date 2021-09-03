@@ -1,7 +1,8 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateMarkdown = require("generateMarkdown")
+const generateMarkdown = require("./utils/generateMarkdown")
+console.log(generateMarkdown);
 //const generateMarkdown = require("generateMarkdown");
 
 // TODO: Create an array of questions for user input
@@ -22,49 +23,49 @@ const questions = [
 function writeToFile(fileName, data) {
     let licenseBadge = generateMarkdown.renderLicenseBadge(data.license);
     let licenseLink = generateMarkdown.renderLicenseLink(data.license);
-    let licenseText = generateMarkdown.renderLicenseSection(data.license);
+    let licenseText = generateMarkdown.renderLicenseSection(data.license, data.contributors);
 
     
-    let readMe = `# ${data.title}                 ${licenseBadge}
+    let readMe =`# ${data.title} ${licenseBadge}                
 
-    ## Description
+## Description
     
-    ${data.description}
+${data.description}
     
-    ## Table of Contents
+## Table of Contents
     
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Credits](#credits)
-    - [License](#license)
-    - [Tests](#Tests)
-    
-    ## Usage
-    
-    Instructions and Examples For Use:
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+- [Tests](#Tests)
 
-    ${data.usage}
-    
-    ## Contributing
-    
-    List of Collaborators:
+## Usage
 
-    ${data.contributors}
-    
-    ## License
-    
-    ${data.license} Link: ${licenseLink}
+Instructions and Examples For Use:
 
-    ${licenseText}
-    
-    ## Tests
-    
-    ${data.tests}
-    
-    ## Questions
-    
-    If you have any questions you can contact me at this [Email](${data.email}), or find out more information regarding any projects at my [GitHub](${data.github}) page`
-    
+${data.usage}
+
+## Contributing
+
+List of Collaborators:
+
+${data.contributors}
+
+## License
+
+${data.license} Link: ${licenseLink}
+
+${licenseText}
+
+## Tests
+
+${data.tests}
+
+## Questions
+
+If you have any questions you can contact me at ${data.email}, or find out more information regarding any projects at my [GitHub](${data.github}) page`
+    console.log(data);   
     fs.writeFile(fileName, readMe, (err) =>
     err ? console.error(err) : console.log('Success!')
 );
@@ -106,14 +107,14 @@ function init() {
     },
     {
     type: 'list',
-    choices: ["MIT", "Apache", "IBM", "Other", "GPLv3"],
+    choices: ["MIT", "Apache", "IBM", "GPLv3", "Other"],
     message: questions[6],
     name: 'license'
     },
     {
     type: 'input',
     message: questions[7],
-    name: 'github:',
+    name: 'github',
     },
     {
     type: 'input',
